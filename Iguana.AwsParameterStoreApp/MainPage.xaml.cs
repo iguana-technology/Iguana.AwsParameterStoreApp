@@ -11,6 +11,8 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+        ProfileEntry.Text = LoadProfile();
+        RegionEntry.Text = LoadRegion();
     }
 
     private async void LoadParametersButton_Clicked(object sender, EventArgs e)
@@ -32,6 +34,9 @@ public partial class MainPage : ContentPage
 
             JObject resultJson = await GetParametersByPathAsync(ssmClient, path);
             JsonEditor.Text = resultJson.ToString(Newtonsoft.Json.Formatting.Indented);
+
+            SaveProfile(ProfileEntry.Text);
+            SaveRegion(RegionEntry.Text);
         }
         catch(Exception ex)
         {
@@ -173,6 +178,26 @@ public partial class MainPage : ContentPage
         }
 
         currentObject[parts[^1]] = value;
+    }
+
+    private void SaveProfile(string profile)
+    {
+        Preferences.Set("LastProfile", profile);
+    }
+
+    private string LoadProfile()
+    {
+        return Preferences.Get("LastProfile", "default");
+    }
+
+    private void SaveRegion(string region)
+    {
+        Preferences.Set("LastRegion", region);
+    }
+
+    private string LoadRegion()
+    {
+        return Preferences.Get("LastRegion", "eu-central-1");
     }
 }
 
