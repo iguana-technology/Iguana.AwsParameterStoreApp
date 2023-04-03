@@ -1,6 +1,10 @@
 ﻿# Iguana AWS Parameter Store
 
-Iguana AWS Parameter Store is a cross-platform application for Windows that helps you interact with AWS Simple Systems Management (SSM) Parameter Store. With this application, you can retrieve parameters based on a specified path and generate a JSON file from the parameters.
+Iguana AWS Parameter Store is a cross-platform application  that helps you interact with AWS Simple Systems Management (SSM) Parameter Store. 
+With this application, you can retrieve parameters based on a specified path, update parameters, delete parameters and generate a JSON file from the parameters.
+
+![Application v1.2.0.0](AppScreenshotV1.2.0.0.png)
+
 
 ## Prerequisites
 
@@ -40,10 +44,19 @@ Replace `YOUR_AWS_ACCESS_KEY_ID` and `YOUR_AWS_SECRET_ACCESS_KEY` with your actu
 Iguana AWS Parameter Store allows you to retrieve parameters based on a specified path and generate a JSON file. To do this, follow these steps:
 
 1. Open the Iguana AWS Parameter Store application.
-2. Enter the aws profile name to use for the AWS
+2. Enter the aws profile name and region to use for the AWS
 3. Enter the desired path to fetch the parameters from AWS SSM.
 4. Click on "Load Parameters" to fetch the parameters from the specified path.
 5. The application will generate a JSON file containing the fetched parameters.
+
+### Creating/Updating Parameters
+1. Enter the desired parameter name and value
+2. Click on "Update/Create Parameetr" to create or update the parameter.
+
+### Deleting Parameters
+1. Enter the parameter name
+2. Click on "Delete Parameter" to delete the parameter
+3. Confirm the deletion by clicking on "Yes" in the 'Delete Parameter' dialog.
 
 ### Installation
 To install the Iguana AWS Parameter Store application, follow these steps:

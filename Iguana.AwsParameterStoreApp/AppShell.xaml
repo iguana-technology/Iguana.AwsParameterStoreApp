@@ -7,7 +7,7 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
+        Title="AWS Parameter Store App"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

@@ -22,11 +22,6 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label Text="AWS SSM Parameters"
-               FontSize="32"
-               Grid.ColumnSpan="6"
-               HorizontalOptions="Center" />
-
         <Label Text="Profile:"
                Grid.Row="1" />
         <Entry x:Name="ProfileEntry"
