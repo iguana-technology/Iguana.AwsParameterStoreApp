@@ -49,7 +49,8 @@ Iguana AWS Parameter Store allows you to retrieve parameters based on a specifie
 To install the Iguana AWS Parameter Store application, follow these steps:
 
 1. Download the latest release of the application from the `Releases` folder.
-2. For Windows, double-click on Iguana.AwsParameterStoreApp_VERSION_x86.msix to install the application.
+2. Windows: 
+   - double-click on Iguana.AwsParameterStoreApp_VERSION_x86.msix to install the application. The application is at the moment in preview and signed by self signed certificate. Follow the instructions https://learn.microsoft.com/en-us/dotnet/maui/windows/deployment/publish-cli?view=net-maui-7.0#installing-the-app to install the certificate.
 
 Now you can start using Iguana AWS Parameter Store to retrieve parameters and generate JSON files from the AWS SSM Parameter Store.
 
