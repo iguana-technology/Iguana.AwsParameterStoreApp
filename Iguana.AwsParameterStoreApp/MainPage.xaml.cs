@@ -24,7 +24,7 @@ public partial class MainPage : ContentPage
                 return;
             }
 
-            var ssmClient = await CreateClient();
+            var ssmClient = await CreateClientAsync();
             if(ssmClient == null)
             {
                 return;
@@ -53,7 +53,7 @@ public partial class MainPage : ContentPage
                 return;
             }
 
-            var ssmClient = await CreateClient();
+            var ssmClient = await CreateClientAsync();
             if(ssmClient == null)
             {
                 return;
@@ -68,7 +68,37 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private async Task<AmazonSimpleSystemsManagementClient?> CreateClient()
+    private async void OnDeleteParameterButton_Clicked(object sender, EventArgs e)
+    {
+        var parameterName = ParameterNameEntry.Text;
+
+        if(string.IsNullOrEmpty(parameterName))
+        {
+            await DisplayAlert("Error", "Please enter a parameter name.", "OK");
+            return;
+        }
+
+        var confirm = await DisplayAlert("Delete Parameter", $"Are you sure you want to delete the parameter '{parameterName}'?", "Yes", "No");
+        if(!confirm) return;
+
+        try
+        {
+            var client = await CreateClientAsync();
+            var request = new DeleteParameterRequest
+            {
+                Name = parameterName
+            };
+            await client.DeleteParameterAsync(request);
+
+            await DisplayAlert("Success", $"The parameter '{parameterName}' has been deleted.", "OK");
+        }
+        catch(Exception ex)
+        {
+            await DisplayAlert("Error", $"An error occurred while deleting the parameter: {ex.Message}", "OK");
+        }
+    }
+
+    private async Task<AmazonSimpleSystemsManagementClient?> CreateClientAsync()
     {
         string region = RegionEntry.Text;
         string profile = ProfileEntry.Text;
@@ -83,7 +113,7 @@ public partial class MainPage : ContentPage
         return new AmazonSimpleSystemsManagementClient(awsCredentials, RegionEndpoint.GetBySystemName(region));
     }
 
-    public async Task UpdateOrCreateParameterAsync(AmazonSimpleSystemsManagementClient ssmClient, string parameterName, string parameterValue, bool isSecure)
+    private async Task UpdateOrCreateParameterAsync(AmazonSimpleSystemsManagementClient ssmClient, string parameterName, string parameterValue, bool isSecure)
     {
         var request = new PutParameterRequest
         {
@@ -104,9 +134,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-
-
-    static async Task<JObject> GetParametersByPathAsync(AmazonSimpleSystemsManagementClient ssmClient, string path)
+    private static async Task<JObject> GetParametersByPathAsync(AmazonSimpleSystemsManagementClient ssmClient, string path)
     {
         var request = new GetParametersByPathRequest
         {
@@ -130,7 +158,7 @@ public partial class MainPage : ContentPage
         return resultJson;
     }
 
-    static void AddParameterToJObject(JObject jsonObject, string path, JToken value)
+    private static void AddParameterToJObject(JObject jsonObject, string path, JToken value)
     {
         string[] parts = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
         JObject currentObject = jsonObject;
