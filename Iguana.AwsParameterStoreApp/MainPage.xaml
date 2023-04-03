@@ -12,9 +12,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
         <Label Text="AWS SSM Parameters"
                FontSize="32"
+               Grid.ColumnSpan="6"
                HorizontalOptions="Center" />
 
         <Label Text="Profile:"
@@ -25,27 +34,58 @@
                Text="default" />
 
         <Label Text="Region:"
-               Grid.Row="2" />
+               Grid.Row="1"
+               Grid.Column="2" />
         <Entry x:Name="RegionEntry"
-               Grid.Row="2"
-               Grid.Column="1"
+               Grid.Row="1"
+               Grid.Column="3"
                Text="eu-central-1" />
 
         <Label Text="Path:"
-               Grid.Row="3" />
+               Grid.Row="1"
+               Grid.Column="4" />
         <Entry x:Name="PathEntry"
-               Grid.Row="3"
-               Grid.Column="1"
+               Grid.Row="1"
+               Grid.Column="5"
                Text="/" />
 
         <Button x:Name="LoadParametersButton"
                 Text="Load Parameters"
-                Grid.Row="4"
+                Grid.Row="2"
+                Grid.ColumnSpan="6"
                 Clicked="LoadParametersButton_Clicked" />
+
+        <Label Text="Parameter Name:"
+               Grid.Row="3" />
+        <Entry x:Name="ParameterNameEntry"
+               Grid.Row="3"
+               Grid.Column="1"
+               Placeholder="Parameter Name" />
+
+        <Label Text="Parameter Value:"
+               Grid.Row="3"
+               Grid.Column="2" />
+        <Entry x:Name="ParameterValueEntry"
+               Grid.Row="3"
+               Grid.Column="3"
+               Placeholder="Parameter Value" />
+
+        <Label Text="Is Secure String?"
+               Grid.Row="3"
+               Grid.Column="4" />
+        <CheckBox x:Name="IsSecureCheckBox"
+                  Grid.Row="3"
+                  Grid.Column="5" />
+
+        <Button Text="Update/Create Parameter"
+                Grid.Row="4"
+                Grid.ColumnSpan="6"
+                Clicked="OnUpdateOrCreateParameterButton_Clicked" />
 
         <Editor x:Name="JsonEditor"
                 IsReadOnly="True"
-                Grid.Row="5" />
+                Grid.Row="5"
+                Grid.ColumnSpan="6" />
     </Grid>
 
 </ContentPage>
