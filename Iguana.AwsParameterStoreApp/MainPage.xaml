@@ -11,6 +11,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -24,6 +28,7 @@
 
         <Label Text="Profile:"
                Grid.Row="1" />
+        
         <Entry x:Name="ProfileEntry"
                Grid.Row="1"
                Grid.Column="1"
@@ -32,6 +37,7 @@
         <Label Text="Region:"
                Grid.Row="1"
                Grid.Column="2" />
+        
         <Entry x:Name="RegionEntry"
                Grid.Row="1"
                Grid.Column="3"
@@ -40,6 +46,7 @@
         <Label Text="Path:"
                Grid.Row="1"
                Grid.Column="4" />
+        
         <Entry x:Name="PathEntry"
                Grid.Row="1"
                Grid.Column="5"
@@ -49,44 +56,68 @@
                 Text="Load Parameters"
                 Grid.Row="2"
                 Grid.ColumnSpan="6"
+                HeightRequest="50"
                 Clicked="LoadParametersButton_Clicked" />
 
+        <Editor x:Name="JsonViewer"
+                IsReadOnly="True"
+                Grid.Row="3"
+                Grid.ColumnSpan="6" 
+                HeightRequest="300" />
+
+        <Label 
+            Text="Update/Delete Parameter:" 
+            Grid.Row="4"
+            FontSize="16" 
+            FontAttributes="Bold"/> 
+
         <Label Text="Parameter Name:"
-               Grid.Row="3" />
+               Grid.Row="5" />
         <Entry x:Name="ParameterNameEntry"
-               Grid.Row="3"
+               Grid.Row="5"
                Grid.Column="1"
                Placeholder="Parameter Name" />
 
         <Label Text="Parameter Value:"
-               Grid.Row="3"
+               Grid.Row="5"
                Grid.Column="2" />
         <Entry x:Name="ParameterValueEntry"
-               Grid.Row="3"
+               Grid.Row="5"
                Grid.Column="3"
                Placeholder="Parameter Value" />
 
         <Label Text="Is Secure String?"
-               Grid.Row="3"
+               Grid.Row="5"
                Grid.Column="4" />
         <CheckBox x:Name="IsSecureCheckBox"
-                  Grid.Row="3"
+                  Grid.Row="5"
                   Grid.Column="5" />
 
         <Button Text="Update/Create Parameter"
-                Grid.Row="4"
+                Grid.Row="6"
                 Grid.ColumnSpan="6"
                 Clicked="OnUpdateOrCreateParameterButton_Clicked" />
 
         <Button Text="Delete Parameter"
-                Grid.Row="5"
+                Grid.Row="7"
                 Grid.ColumnSpan="6"
                 Clicked="OnDeleteParameterButton_Clicked" />
         
-        <Editor x:Name="JsonEditor"
-                IsReadOnly="True"
-                Grid.Row="6"
-                Grid.ColumnSpan="6" />
+        <Label 
+            Text="Bulk Insert" 
+            Grid.Row="8"
+            FontSize="16" 
+            FontAttributes="Bold"/>
+
+        <Editor x:Name="BulkInsert"
+                Grid.Row="9"
+                Grid.ColumnSpan="6"
+                HeightRequest="300" />
+
+        <Button Text="Bulk Insert"
+                Grid.Row="10"
+                Grid.ColumnSpan="6"
+                Clicked="OnBulkInsertButton_Clicked" />
     </Grid>
 
 </ContentPage>
